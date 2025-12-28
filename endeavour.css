@@ -1,21 +1,22 @@
 /* @theme endeavour */
 /* Author: Flock137 */
-/* Based on graph_paper.css by rnd195 */
+/* Based on graph_paper.css by rnd195 and default theme */
 /* MIT license */
 
 @import "default";
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
-:root {
-  /* Light theme (default) */
+/* DEFAULT: LIGHT THEME */
+:root, section {
+  /* Light theme (default) - Based on default theme spacing */
   --bg-primary: #efefef;
   --bg-secondary: #ffffff;
   --text-primary: #1a1a1a;
   --text-secondary: #666666;
   --accent-purple: #6e1ebf;     /* EndeavourOS purple */
   --accent-blue: #7892f5;       /* Blue-violet */
-  --accent-orange: #fd7c7c;     /* Orange */
+  --accent-teal: #008080;       /* Dark teal */
   --border-color: #cccccc;
   --code-bg: #f5f5f5;
   --mark-bg: #ffd166;           /* Yellow for highlights */
@@ -25,57 +26,77 @@
   --font-sans: 'Inter', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Consolas', 'Monaco', 'Courier New', monospace;
   
-  /* Spacing */
-  --header-height: 50px;
-  --footer-height: 40px;
+  /* Default theme spacing */
+  --slide-width: 1280px;
+  --slide-height: 720px;
+  --slide-padding: 78.5px;
 }
 
-/* Apply fonts globally */
-section {
-  font-family: var(--font-sans);
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
-
-/* dark theme - Activated with class="dark" */
-section.dark {
+/* Activate dark theme with theme:endeavour class:dark in markdown properties */
+section.dark,
+section[data-dark] {
+  /* Dark theme */
   --bg-primary: #1e1e1e;
   --bg-secondary: #2d2d2d;
   --text-primary: #efefef;
   --text-secondary: #aaaaaa;
-  --accent-purple: #8a3fd4;     /* Lighter purple for dark mode */
+  --accent-purple: #8a3fd4;
   --accent-blue: #94a8ff;
-  --accent-orange: #ff9595;
+  --accent-teal: #00b3b3;       /* Brighter teal for dark mode */
   --border-color: #444444;
   --code-bg: #2a2a2a;
-  --mark-bg: #e6b400;           /* Darker yellow for dark mode */
+  --mark-bg: #e6b400;
   --shadow: rgba(0, 0, 0, 0.4);
 }
 
-/* Headers */
+/* Apply fonts and base styles */
+section {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  /* Keep default theme dimensions */
+  width: var(--slide-width);
+  height: var(--slide-height);
+  padding: var(--slide-padding);
+}
+
+/* Headers - no underlines, match default theme sizing */
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-top: 0;
+  margin-bottom: 16px; /* Default theme spacing */
+  border-bottom: none !important; /* Remove any underlines */
 }
 
 h1 {
   color: var(--accent-purple);
-  border-bottom: 3px solid var(--accent-purple);
-  padding-bottom: 0.3em;
+  font-size: 1.6em; /* Default theme size */
+  padding-bottom: 0; /* Remove padding for underline */
 }
 
 h2 {
   color: var(--accent-blue);
-  border-bottom: 2px solid var(--accent-blue);
-  padding-bottom: 0.2em;
+  font-size: 1.3em; /* Default theme size */
+  padding-bottom: 0; /* Remove padding for underline */
 }
 
 h3 {
-  color: var(--accent-orange);
+  color: var(--accent-teal); /* Changed from orange to teal */
+  font-size: 1.1em; /* Default theme size */
 }
 
-h4, h5, h6 {
+h4 {
+  font-size: 1.05em;
+  color: var(--text-primary);
+}
+
+h5 {
+  font-size: 1em;
+  color: var(--text-primary);
+}
+
+h6 {
+  font-size: 0.9em;
   color: var(--text-primary);
 }
 
@@ -88,91 +109,29 @@ code {
   font-size: 0.9em;
   background-color: var(--code-bg);
   padding: 0.2em 0.4em;
-  border-radius: 4px;
+  border-radius: 3px;
   color: var(--text-primary);
 }
 
 pre {
   background-color: var(--code-bg);
-  padding: 1em;
-  border-radius: 6px;
-  border-left: 5px solid var(--accent-purple);
-  overflow-x: auto;
+  padding: 16px; /* Default theme padding */
+  overflow: auto;
   font-size: 0.9em;
-}
-
-kbd {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); /* Match default theme */
   border-radius: 3px;
-  box-shadow: 0 2px 0 var(--border-color);
-  padding: 0.2em 0.4em;
-  font-size: 0.85em;
+  margin-bottom: 16px; /* Default theme margin */
 }
 
-/* Header and Footer */
-header {
-  height: var(--header-height);
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.7em;
-  color: var(--text-secondary);
-  padding: 0.5em 1em;
-}
-
-footer {
-  height: var(--footer-height);
-  border-top: 1px solid var(--border-color);
-  font-size: 0.7em;
-  color: var(--text-secondary);
-  padding: 0.5em 1em;
-}
-
-/* Pagination */
-section::after {
-  font-size: 0.75em;
-  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
-  color: var(--text-secondary);
-  font-weight: 500;
-}
-
-/* Image - Auto-center images and their slides */
-/* Center images by default */
-section img {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 90%;
-  max-height: 70vh;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px var(--shadow);
-}
-
-/* When slide contains an image, center all content */
-section:has(> img:first-child),
-section:has(> p > img) {
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Force centering with alt text */
-img[alt~="center"] {
-  display: block !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-}
-
-/* Blockquotes */
+/* Blockquote - Match default theme exactly */
 blockquote {
-  background: var(--bg-secondary);
-  border-left: 6px solid var(--accent-blue);
-  margin: 1.5em 0;
-  padding: 1em 1.5em;
-  border-radius: 0 8px 8px 0;
+  padding: 0 1em; /* Default theme padding */
+  color: var(--text-secondary);
+  border-left: 0.25em solid var(--accent-teal); /* Changed to teal */
+  margin: 0 0 16px 0; /* Default theme margin */
+  background: none; /* Remove background to match default */
   font-style: italic;
-  box-shadow: 0 2px 4px var(--shadow);
+  box-shadow: none; /* Remove shadow to match default */
 }
 
 blockquote p {
@@ -187,32 +146,138 @@ blockquote cite {
   font-style: normal;
 }
 
+/* Header and Footer - Match default theme positioning */
+header {
+  position: absolute;
+  top: 21px;
+  left: 30px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin: 0;
+  border: none; /* Remove border */
+}
+
+footer {
+  position: absolute;
+  bottom: 21px;
+  left: 30px;
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin: 0;
+  border: none; /* Remove border */
+}
+
+/* Pagination - Match default theme */
+section::after {
+  position: absolute;
+  right: 30px;
+  bottom: 21px;
+  font-size: 24px;
+  color: var(--text-secondary);
+  content: attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+  padding: 0;
+}
+
+/* IMAGE HANDLING - Auto-center images */
+section img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 90%;
+  max-height: 70vh;
+  border-radius: 5px;
+}
+
+/* When slide contains an image, center all content */
+section:has(> img:first-child),
+section:has(> p > img) {
+  text-align: center;
+}
+
+/* Force centering with alt text */
+img[alt~="center"] {
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* SMALL TEXT CLASS - Just slightly smaller */
+section.small-text {
+  /* Reduce font size by about 10% */
+  font-size: 26px; /* Default is 29px */
+}
+
+section.small-text h1 {
+  font-size: 1.44em; /* 1.6em * 0.9 */
+}
+
+section.small-text h2 {
+  font-size: 1.17em; /* 1.3em * 0.9 */
+}
+
+section.small-text h3 {
+  font-size: 0.99em; /* 1.1em * 0.9 */
+}
+
+section.small-text p,
+section.small-text li,
+section.small-text blockquote,
+section.small-text code {
+  font-size: 0.9em;
+}
+
+/* TINYTEXT CLASS - Slightly smaller than small-text */
+section.tinytext {
+  font-size: 24px; /* Default is 29px */
+}
+
+section.tinytext h1 {
+  font-size: 1.28em; /* 1.6em * 0.8 */
+}
+
+section.tinytext h2 {
+  font-size: 1.04em; /* 1.3em * 0.8 */
+}
+
+section.tinytext h3 {
+  font-size: 0.88em; /* 1.1em * 0.8 */
+}
+
+section.tinytext p,
+section.tinytext li,
+section.tinytext blockquote,
+section.tinytext code {
+  font-size: 0.85em;
+}
+
+/* Lists - Match default theme */
+ul, ol {
+  padding-left: 2em;
+  margin: 0 0 16px 0;
+}
+
+li {
+  margin: 0.5em 0;
+}
+
 /* Tables */
 table {
-  margin: 1em auto;
+  margin: 0 0 16px 0;
   border-collapse: collapse;
   border-spacing: 0;
-  box-shadow: 0 2px 4px var(--shadow);
-  border-radius: 8px;
-  overflow: hidden;
 }
 
 th {
   background-color: var(--accent-purple);
   color: white;
-  padding: 0.75em 1em;
-  text-align: left;
-  font-weight: 600;
+  padding: 6px 13px;
+  border: 1px solid var(--border-color);
 }
 
 td {
-  padding: 0.75em 1em;
-  border-bottom: 1px solid var(--border-color);
+  padding: 6px 13px;
+  border: 1px solid var(--border-color);
   background-color: var(--bg-secondary);
-}
-
-tr:last-child td {
-  border-bottom: none;
 }
 
 /* Mark/highlight */
@@ -220,159 +285,37 @@ mark {
   background-color: var(--mark-bg);
   padding: 0.1em 0.3em;
   border-radius: 3px;
-  color: var(--text-primary);
-  font-weight: 500;
-}
-
-/* small text classes - Apply to individual slides */
-section.small-text {
-  font-size: 0.85em;
-}
-
-section.small-text h1 {
-  font-size: 1.8em;
-}
-
-section.small-text h2 {
-  font-size: 1.5em;
-}
-
-section.small-text h3 {
-  font-size: 1.2em;
-}
-
-section.small-text p,
-section.small-text li,
-section.small-text blockquote {
-  font-size: 0.9em;
-}
-
-section.small-text code {
-  font-size: 0.85em;
-}
-
-section.small-text pre {
-  font-size: 0.8em;
-}
-
-/* (teeny) Tinytext class */
-section.tinytext {
-  font-size: 0.75em;
-}
-
-section.tinytext h1 {
-  font-size: 1.6em;
-}
-
-section.tinytext h2 {
-  font-size: 1.3em;
-}
-
-section.tinytext h3 {
-  font-size: 1.1em;
-}
-
-section.tinytext p,
-section.tinytext li,
-section.tinytext blockquote {
-  font-size: 0.85em;
-}
-
-/* Lists */
-ul, ol {
-  padding-left: 1.8em;
-  margin: 1em 0;
-}
-
-li {
-  margin: 0.4em 0;
-  line-height: 1.5;
-}
-
-li > ul,
-li > ol {
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
 }
 
 /* Horizontal rule */
 hr {
-  border: none;
-  height: 2px;
-  background: linear-gradient(to right, 
-    transparent, 
-    var(--accent-purple), 
-    transparent);
-  margin: 2.5em auto;
-  width: 80%;
+  height: 0.25em;
+  padding: 0;
+  margin: 24px 0;
+  background-color: var(--border-color);
+  border: 0;
 }
 
 /* Links */
 a {
   color: var(--accent-blue);
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--accent-purple);
   text-decoration: underline;
 }
 
-/* Keyboard focus for accessibility */
-:focus-visible {
-  outline: 2px solid var(--accent-orange);
-  outline-offset: 2px;
-}
-
-/* Inline elements */
+/* Strong and emphasis */
 strong, b {
-  color: var(--accent-purple);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 em, i {
-  color: var(--accent-blue);
   font-style: italic;
 }
 
-/* Task lists */
-input[type="checkbox"] {
-  margin-right: 0.5em;
-  transform: scale(1.2);
-}
-
-/* Grid layout helper */
-.columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2em;
-  margin: 1.5em 0;
-}
-
-/* Footnotes */
-.footnotes {
-  font-size: 0.8em;
-  color: var(--text-secondary);
-  border-top: 1px solid var(--border-color);
-  padding-top: 1em;
-  margin-top: 2em;
-}
-
-/* Print optimizations */
-@media print {
-  section {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-  
-  header, footer {
-    position: fixed;
-  }
-  
-  a {
-    color: var(--accent-blue) !important;
-    text-decoration: underline !important;
-  }
+/* Ensure slide content fits */
+section {
+  box-sizing: border-box;
 }
